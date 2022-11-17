@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { StateContext } from "../contexts";
 
 import Login from "./Login";
-import Register from "./Register";
+//import Logout from "./Logout";
 
+import Register from "./Register";
 const Logout = React.lazy(() => import("./Logout"));
 
 export default function UserBar() {

@@ -1,18 +1,22 @@
 {
   "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "json-server-auth db.json --port 4000"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "express": "~4.16.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.0",
+    "morgan": "~1.9.1"
   },
   "devDependencies": {
-    "json-server": "^0.17.1",
-    "json-server-auth": "^2.1.0"
+    "nodemon": "^2.0.20"
   }
 }

@@ -12,22 +12,23 @@ export default function CreatePost() {
   const { user } = state;
 
   const [post, createPost] = useResource(({ title, content, author }) => ({
-    url: "/posts",
+    url: "/post",
     method: "post",
     data: { title, content, author },
+    headers: { Authorization: `${state.user.access_token}` },
+    data: { title, content },
   }));
   useEffect(() => {
-    if (post?.error) {
-      setError(true);
-      //alert("Something went wrong creating post.");
-    }
     if (post?.isLoading === false && post?.data) {
       dispatch({
         type: "CREATE_POST",
         title: post.data.title,
         content: post.data.content,
-        author: post.data.author,
+        author: post.data.username,
         id: post.data.id,
+        dateCreated: post.data.dateCreated,
+        complete: post.data.complete,
+        dateCompleted: post.data.dateCompleted,
       });
     }
   }, [post]);
@@ -37,18 +38,10 @@ export default function CreatePost() {
       onSubmit={(e) => {
         e.preventDefault();
         createPost({ title, content, author: user });
-        dispatch({
-          type: "CREATE_POST",
-          title,
-          content,
-          //ndate,
-          author: user,
-          id: uuidv4(),
-        });
       }}
     >
       <div>
-        Author: <b>{user}</b>
+        Author: <b>{user.username}</b>
       </div>
       <div>
         date: <b>{Date.now()}</b>

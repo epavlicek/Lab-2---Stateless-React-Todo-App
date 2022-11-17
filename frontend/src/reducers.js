@@ -2,9 +2,12 @@ function userReducer(state, action) {
   switch (action.type) {
     case "LOGIN":
     case "REGISTER":
-      return action.username;
+      return {
+        username: action.username,
+        access_token: action.access_token,
+      };
     case "LOGOUT":
-      return "";
+      return null;
     default:
       return state;
   }
@@ -22,6 +25,8 @@ function postReducer(state, action) {
       return [newPost, ...state];
     case "FETCH_POSTS":
       return action.posts;
+    case "CLEAR_POSTS":
+      return [];
     default:
       return state;
   }
